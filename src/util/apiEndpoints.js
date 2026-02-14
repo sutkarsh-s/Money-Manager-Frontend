@@ -21,5 +21,10 @@ export const API_ENDPOINTS = {
     EMAIL_EXPENSE: "/email/expense-excel",
     APPLY_FILTERS: "/filter",
     DASHBOARD_DATA: "/dashboard",
+    ADD_LEND_BORROW: "/lend-borrow",
+    GET_LEND_BORROW: "/lend-borrow",
+    DELETE_LEND_BORROW: (id) => `/lend-borrow/${id}`,
+    UPDATE_LEND_BORROW_STATUS: (id) => `/lend-borrow/${id}/status`,
+    CONTACT_US: "/contact",
     UPLOAD_IMAGE: `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`
 }

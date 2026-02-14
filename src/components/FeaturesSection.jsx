@@ -6,6 +6,8 @@ import {
   Filter,
   FileSpreadsheet,
   Mail,
+  HandCoins,
+  IndianRupee,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -32,6 +34,13 @@ const FEATURES = [
     path: "/income",
   },
   {
+    icon: HandCoins,
+    title: "Lend & Borrow Tracking",
+    description: "Track who owes you and what you owe with due-date and status management.",
+    gradient: "from-indigo-500 to-violet-500",
+    path: "/lend",
+  },
+  {
     icon: Filter,
     title: "Advanced Filters",
     description: "Filter by date range, category, and more. Find what you need instantly.",
@@ -39,10 +48,17 @@ const FEATURES = [
     path: "/filter",
   },
   {
+    icon: IndianRupee,
+    title: "Profile-Level Dashboard",
+    description: "See total balance, recent activity, and key numbers in one clean view.",
+    gradient: "from-cyan-500 to-blue-500",
+    path: "/dashboard",
+  },
+  {
     icon: FileSpreadsheet,
     title: "Export & Download",
     description: "Download your data as Excel. Keep records for taxes and budgeting.",
-    gradient: "from-cyan-500 to-blue-500",
+    gradient: "from-teal-500 to-cyan-500",
   },
   {
     icon: Mail,

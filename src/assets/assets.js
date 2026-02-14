@@ -1,7 +1,7 @@
 import logo from "./logo.png";
 import login_bg from "./login-bg.png";
 import landing from "./landing.png";
-import {Coins, FunnelPlus, LayoutDashboard, List, Wallet} from "lucide-react";
+import {ArrowDownCircle, ArrowUpCircle, Coins, FunnelPlus, LayoutDashboard, List, Wallet} from "lucide-react";
 
 export const assets = {
     logo,
@@ -39,5 +39,17 @@ export const SIDE_BAR_DATA = [
         label: "Filters",
         icon: FunnelPlus,
         path: "/filter",
+    },
+    {
+        id: "06",
+        label: "Lend",
+        icon: ArrowUpCircle,
+        path: "/lend",
+    },
+    {
+        id: "07",
+        label: "Borrow",
+        icon: ArrowDownCircle,
+        path: "/borrow",
     },
 ];

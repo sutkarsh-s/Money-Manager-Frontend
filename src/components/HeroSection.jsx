@@ -1,8 +1,13 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
 import { ArrowRight, Shield, TrendingUp, Wallet, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import { AppContext } from "../context/AppContext.jsx";
 
-const HeroSection = () => (
+const HeroSection = () => {
+  const { user } = useContext(AppContext);
+  const firstName = user?.fullName?.split(" ")[0];
+
+  return (
   <section className="relative min-h-[85vh] flex items-center overflow-hidden">
     {/* Gradient mesh background */}
     <div
@@ -22,7 +27,7 @@ const HeroSection = () => (
       <div className="max-w-4xl mx-auto text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100/80 text-purple-700 text-sm font-medium mb-8 animate-fade-in">
           <Sparkles className="w-4 h-4" />
-          <span>Smart financial management</span>
+          <span>{firstName ? `Welcome, ${firstName}` : "Smart financial management"}</span>
         </div>
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 leading-[1.1] animate-fade-in-up">
           Take Control of{" "}
@@ -66,6 +71,7 @@ const HeroSection = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default memo(HeroSection);

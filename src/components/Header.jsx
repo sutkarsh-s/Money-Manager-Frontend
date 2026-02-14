@@ -1,7 +1,7 @@
 import { useState, useCallback, memo } from "react";
-import { assets } from "../assets/assets.js";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import BrandLogo from "./BrandLogo.jsx";
 
 const NAV_LINKS = [
   { name: "Home", to: "/home" },
@@ -32,14 +32,9 @@ const Header = () => {
             className="flex items-center gap-3 min-w-0 group"
             aria-label="Money Manager - Home"
           >
-            <img
-              src={assets.logo}
-              alt=""
-              className="h-10 w-10 md:h-11 md:w-11 flex-shrink-0 rounded-xl shadow-md ring-2 ring-purple-100/50 group-hover:ring-purple-200 transition-all"
-            />
-            <span className="text-lg font-bold text-gray-900 truncate bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text">
-              Money Manager
-            </span>
+            <div className="group-hover:scale-[1.01] transition-transform">
+              <BrandLogo />
+            </div>
           </Link>
 
           <nav

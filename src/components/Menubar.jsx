@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect, useContext, useCallback, memo } from "react";
 import { LogOut, X, Menu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { assets } from "../assets/assets.js";
 import { AppContext } from "../context/AppContext.jsx";
 import Sidebar from "./Sidebar.jsx";
+import BrandLogo from "./BrandLogo.jsx";
 
 const Menubar = ({ activeMenu }) => {
   const [openSideMenu, setOpenSideMenu] = useState(false);
@@ -49,23 +49,14 @@ const Menubar = ({ activeMenu }) => {
           {openSideMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
 
-        <div className="flex items-center gap-3">
-          <img
-            src={assets.logo}
-            alt=""
-            className="h-10 w-10 flex-shrink-0 rounded-xl shadow-md ring-2 ring-purple-100/50"
-          />
-          <span className="text-lg font-bold text-gray-900 truncate bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text">
-            Money Manager
-          </span>
-        </div>
+        <BrandLogo />
       </div>
 
       <div className="relative" ref={dropdownRef}>
         <button
           type="button"
           onClick={() => setShowDropdown(!showDropdown)}
-          className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-purple-100 to-indigo-100 text-purple-700 hover:from-purple-200 hover:to-indigo-200 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 overflow-hidden ring-2 ring-purple-200/50"
+          className="flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br from-purple-100 to-indigo-100 text-purple-700 hover:from-purple-200 hover:to-indigo-200 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 overflow-hidden ring-2 ring-purple-200/50"
           aria-haspopup="true"
           aria-expanded={showDropdown}
           aria-label="User menu"
@@ -85,7 +76,7 @@ const Menubar = ({ activeMenu }) => {
 
         {showDropdown && (
           <div
-            className="absolute right-0 mt-2 w-56 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-200/80 py-2 z-50 animate-fade-in overflow-hidden"
+            className="absolute right-0 mt-2 w-64 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-200/80 py-2 z-50 animate-fade-in overflow-hidden"
             role="menu"
           >
             <div className="px-4 py-4 border-b border-gray-100 bg-gradient-to-r from-purple-50/50 to-indigo-50/50">
@@ -93,6 +84,7 @@ const Menubar = ({ activeMenu }) => {
                 {user?.fullName ?? "User"}
               </p>
               <p className="text-xs text-gray-600 truncate mt-0.5">{user?.email ?? ""}</p>
+              <p className="text-xs text-purple-600 mt-2 font-medium">Profile Menu</p>
             </div>
 
             <div className="py-1">
