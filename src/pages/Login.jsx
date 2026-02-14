@@ -1,122 +1,111 @@
-import {useContext, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import {assets} from "../assets/assets.js";
+import { useContext, useState, useCallback } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input.jsx";
-import {validateEmail} from "../util/validation.js";
+import { validateEmail } from "../util/validation.js";
 import axiosConfig from "../util/axiosConfig.jsx";
-import {API_ENDPOINTS} from "../util/apiEndpoints.js";
-import {getErrorMessage} from "../util/errorUtils.js";
-import {AppContext} from "../context/AppContext.jsx";
-import {LoaderCircle} from "lucide-react";
-import Header from "../components/Header.jsx";
+import { API_ENDPOINTS } from "../util/apiEndpoints.js";
+import { getErrorMessage } from "../util/errorUtils.js";
+import { AppContext } from "../context/AppContext.jsx";
+import AuthLayout from "../components/layouts/AuthLayout.jsx";
+import Button from "../components/ui/Button.jsx";
+import ErrorAlert from "../components/ui/ErrorAlert.jsx";
 
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const {setUser} = useContext(AppContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const { setUser } = useContext(AppContext);
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      setIsLoading(true);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-        //basic validation
-        if (!validateEmail(email)) {
-            setError("Please enter valid email address");
-            setIsLoading(false);
-            return;
+      if (!validateEmail(email)) {
+        setError("Please enter a valid email address");
+        setIsLoading(false);
+        return;
+      }
+
+      if (!password.trim()) {
+        setError("Please enter your password");
+        setIsLoading(false);
+        return;
+      }
+
+      setError(null);
+
+      try {
+        const response = await axiosConfig.post(API_ENDPOINTS.LOGIN, {
+          email,
+          password,
+        });
+        const { accessToken, user } = response.data;
+        if (accessToken) {
+          localStorage.setItem("token", accessToken);
+          setUser(user);
+          navigate("/dashboard");
         }
+      } catch (err) {
+        setError(getErrorMessage(err));
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [email, password, setUser, navigate]
+  );
 
-        if (!password.trim()) {
-            setError("Please enter your password");
-            setIsLoading(false);
-            return;
-        }
+  return (
+    <AuthLayout
+      title="Welcome Back"
+      subtitle="Please enter your details to sign in"
+    >
+      <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+        <Input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          label="Email Address"
+          placeholder="name@example.com"
+          type="email"
+          autoComplete="email"
+          required
+        />
 
-        setError("");
+        <Input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          label="Password"
+          placeholder="••••••••"
+          type="password"
+          autoComplete="current-password"
+          required
+        />
 
-        //LOGIN API call
-        try {
-            const response = await axiosConfig.post(API_ENDPOINTS.LOGIN, {
-                email,
-                password,
-            });
-            const {token, user} = response.data;
-            if (token) {
-                localStorage.setItem("token", token);
-                setUser(user);
-                navigate("/dashboard");
-            }
-        } catch (error) {
-            setError(getErrorMessage(error));
-        } finally {
-            setIsLoading(false);
-        }
+        <ErrorAlert message={error} />
 
-    }
+        <Button
+          type="submit"
+          isLoading={isLoading}
+          loadingText="Logging in..."
+          variant="primary"
+        >
+          LOGIN
+        </Button>
 
-    return (
-        <div className="h-screen w-full flex flex-col">
-            <Header />
-            <div className="flex-grow w-full relative flex items-center justify-center overflow-hidden">
-                {/* Background image with blur*/}
-                <img src={assets.login_bg} alt="Background" className="absolute inset-0 w-full h-full object-cover filter blur-sm" />
-
-                <div className="relative z-10 w-full max-w-md px-6">
-
-                    <div className="bg-white bg-opacity-95 backdrop-blur-sm rounded-lg shadow-2xl p-8">
-                        <h3 className="text-2xl font-semibold text-black text-center mb-2">
-                            Welcome Back
-                        </h3>
-                        <p className="text-sm text-slate-700 text-center mb-8">
-                            Please enter your details to login in
-                        </p>
-
-                        <form onSubmit={handleSubmit} className="space-y-4">
-
-                            <Input
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                label="Email Address"
-                                placeholder="name@example.com"
-                                type="text"
-                            />
-
-                            <Input
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                label="Password"
-                                placeholder="*********"
-                                type="password"
-                            />
-
-                            {error && (
-                                <p className="text-red-800 text-sm text-center bg-red-50 p-2 rounded">
-                                    {error}
-                                </p>
-                            )}
-
-                            <button disabled={isLoading} className={`btn-primary w-full py-3 text-lg font-medium flex items-center justify-center gap-2 ${isLoading ? 'opacity-60 cursor-not-allowed': ''}`} type="submit">
-                                {isLoading ? (
-                                    <>
-                                        <LoaderCircle className="animate-spin w-5 h-5" />
-                                        Logging in...
-                                    </>
-                                ):("LOGIN")}
-                            </button>
-
-                            <p className="text-sm text-slate-800 text-center mt-6">
-                                Don't have an account?
-                                <Link to="/signup" className="font-medium text-primary underline hover:text-primary-dark transition-colors">Signup</Link>
-                            </p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
+        <p className="text-sm text-gray-600 text-center pt-4">
+          Don&apos;t have an account?{" "}
+          <Link
+            to="/signup"
+            className="font-medium text-purple-600 hover:text-purple-700 underline underline-offset-2 transition-colors"
+          >
+            Sign up
+          </Link>
+        </p>
+      </form>
+    </AuthLayout>
+  );
+};
 
 export default Login;

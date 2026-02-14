@@ -1,37 +1,35 @@
-import {useEffect, useState} from "react";
-import {prepareIncomeLineChartData} from "../util/util.js";
+import { useEffect, useState, memo } from "react";
+import { Plus } from "lucide-react";
 import CustomLineChart from "./CustomLineChart.jsx";
-import {Plus} from "lucide-react";
+import { prepareIncomeLineChartData } from "../util/util.js";
 
-const IncomeOverview = ({transactions, onAddIncome}) => {
-    const [chartData, setChartData] = useState([]);
-    useEffect(() => {
-        const result = prepareIncomeLineChartData(transactions);
-        console.log(result);
-        setChartData(result);
+const IncomeOverview = ({ transactions, onAddIncome }) => {
+  const [chartData, setChartData] = useState([]);
 
-        return () => {};
-    }, [transactions]);
-    return (
-        <div className="card">
-            <div className="flex items-center justify-between">
-                <div>
-                    <h5 className="text-lg">
-                        Income Overview
-                    </h5>
-                    <p className="text-xs text-gray-400 mt-0 5">
-                        Track your earnings over time and analyze your income trends.
-                    </p>
-                </div>
-                <button className="add-btn" onClick={onAddIncome}>
-                    <Plus size={15} className="text-lg" /> Add Income
-                </button>
-            </div>
-            <div className="mt-10">
-                <CustomLineChart data={chartData} />
-            </div>
+  useEffect(() => {
+    const result = prepareIncomeLineChartData(transactions);
+    setChartData(result);
+  }, [transactions]);
+
+  return (
+    <div className="card">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <h5 className="text-lg font-semibold text-gray-900">Income Overview</h5>
+          <p className="text-sm text-gray-500 mt-0.5">
+            Track your earnings over time and analyze income trends.
+          </p>
         </div>
-    )
-}
+        <button type="button" className="add-btn shrink-0" onClick={onAddIncome}>
+          <Plus size={18} aria-hidden />
+          Add Income
+        </button>
+      </div>
+      <div className="mt-6">
+        <CustomLineChart data={chartData} />
+      </div>
+    </div>
+  );
+};
 
-export default IncomeOverview;
+export default memo(IncomeOverview);

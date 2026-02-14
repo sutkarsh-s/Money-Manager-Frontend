@@ -4,8 +4,8 @@ import Input from "./Input.jsx";
 
 // Add 'categories' prop
 const AddExpenseForm = ({ onAddExpense, categories }) => {
-    const [expense, setExpense] = useState({ // Renamed 'income' state to 'expense' for clarity
-        name,
+    const [expense, setExpense] = useState({
+        name: "",
         categoryId: "", // Changed from 'category' to 'categoryId'
         amount: "",
         date: "",
