@@ -17,7 +17,7 @@ const BrandLogo = ({ size = "md", showText = true }) => {
         <Landmark className="w-5 h-5" />
       </span>
       {showText && (
-        <span className="text-lg font-bold text-gray-900 truncate bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text">
+        <span className="text-lg font-bold text-gray-900 dark:text-white truncate">
           Money Manager
         </span>
       )}

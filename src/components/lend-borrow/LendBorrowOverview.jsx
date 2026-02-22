@@ -10,8 +10,8 @@ const LendBorrowOverview = ({ type, entries, onAdd }) => {
     <div className="card">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
         <div>
-          <h4 className="text-lg font-semibold text-gray-900">{type === "lend" ? "Lend Overview" : "Borrow Overview"}</h4>
-          <p className="text-sm text-gray-500">Current page financial snapshot</p>
+          <h4 className="text-lg font-semibold text-gray-900 dark:text-white">{type === "lend" ? "Lend Overview" : "Borrow Overview"}</h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400">Current page financial snapshot</p>
         </div>
 
         <button type="button" onClick={onAdd} className="add-btn add-btn-fill">
@@ -21,17 +21,17 @@ const LendBorrowOverview = ({ type, entries, onAdd }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <div className="rounded-xl p-4 bg-purple-50 border border-purple-100">
-          <p className="text-sm text-gray-600">Total Amount</p>
-          <p className="text-xl font-semibold text-purple-700 mt-1">₹{addThousandsSeparator(total)}</p>
+        <div className="rounded-xl p-4 bg-purple-50 dark:bg-purple-900/20 border border-purple-100 dark:border-purple-800/40">
+          <p className="text-sm text-gray-600 dark:text-gray-400">Total Amount</p>
+          <p className="text-xl font-semibold text-purple-700 dark:text-purple-400 mt-1">₹{addThousandsSeparator(total)}</p>
         </div>
-        <div className="rounded-xl p-4 bg-amber-50 border border-amber-100">
-          <p className="text-sm text-gray-600">Pending</p>
-          <p className="text-xl font-semibold text-amber-700 mt-1">{pendingCount}</p>
+        <div className="rounded-xl p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800/40">
+          <p className="text-sm text-gray-600 dark:text-gray-400">Pending</p>
+          <p className="text-xl font-semibold text-amber-700 dark:text-amber-400 mt-1">{pendingCount}</p>
         </div>
-        <div className="rounded-xl p-4 bg-rose-50 border border-rose-100">
-          <p className="text-sm text-gray-600">Overdue</p>
-          <p className="text-xl font-semibold text-rose-700 mt-1">{overdueCount}</p>
+        <div className="rounded-xl p-4 bg-rose-50 dark:bg-rose-900/20 border border-rose-100 dark:border-rose-800/40">
+          <p className="text-sm text-gray-600 dark:text-gray-400">Overdue</p>
+          <p className="text-xl font-semibold text-rose-700 dark:text-rose-400 mt-1">{overdueCount}</p>
         </div>
       </div>
     </div>

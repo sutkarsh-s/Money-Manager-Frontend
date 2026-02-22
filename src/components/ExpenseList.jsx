@@ -11,8 +11,8 @@ const ExpenseList = ({ transactions, onDelete, onDownload, onEmail }) => {
     <div className="card">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <h5 className="text-lg font-semibold text-gray-900">All Expenses</h5>
-          <p className="text-sm text-gray-500 mt-0.5">Manage your expense records</p>
+          <h5 className="text-lg font-semibold text-gray-900 dark:text-white">All Expenses</h5>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Manage your expense records</p>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <button type="button" className="card-btn" onClick={onEmail}>

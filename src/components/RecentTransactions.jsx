@@ -12,8 +12,8 @@ const RecentTransactions = ({ transactions, onMore }) => {
     <div className="card">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h4 className="text-lg font-semibold text-gray-900">Recent Transactions</h4>
-          <p className="text-sm text-gray-500 mt-0.5">Your latest activity</p>
+          <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Recent Transactions</h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Your latest activity</p>
         </div>
         <button
           type="button"

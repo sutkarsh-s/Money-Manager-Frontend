@@ -11,7 +11,7 @@ const Transactions = ({ transactions, onMore, type, title }) => {
   return (
     <div className="card">
       <div className="flex items-center justify-between mb-6">
-        <h5 className="text-lg font-semibold text-gray-900">{title}</h5>
+        <h5 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h5>
         <button type="button" className="card-btn" onClick={onMore}>
           More <ArrowRight className="w-4 h-4" aria-hidden />
         </button>

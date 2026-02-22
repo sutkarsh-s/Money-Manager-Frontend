@@ -5,13 +5,7 @@ import Input from "../Input.jsx";
 
 const LendBorrowForm = ({ type, onSubmit }) => {
   const [formData, setFormData] = useState({
-    name: "",
-    personName: "",
-    amount: "",
-    date: "",
-    dueDate: "",
-    notes: "",
-    icon: "",
+    name: "", personName: "", amount: "", date: "", dueDate: "", notes: "", icon: "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -22,10 +16,7 @@ const LendBorrowForm = ({ type, onSubmit }) => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      await onSubmit({
-        ...formData,
-        type: type.toUpperCase(),
-      });
+      await onSubmit({ ...formData, type: type.toUpperCase() });
     } finally {
       setLoading(false);
     }
@@ -58,27 +49,17 @@ const LendBorrowForm = ({ type, onSubmit }) => {
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <Input
-          label="Transaction Date"
-          type="date"
-          value={formData.date}
-          onChange={({ target }) => handleChange("date", target.value)}
-        />
-        <Input
-          label="Due Date"
-          type="date"
-          value={formData.dueDate}
-          onChange={({ target }) => handleChange("dueDate", target.value)}
-        />
+        <Input label="Transaction Date" type="date" value={formData.date} onChange={({ target }) => handleChange("date", target.value)} />
+        <Input label="Due Date" type="date" value={formData.dueDate} onChange={({ target }) => handleChange("dueDate", target.value)} />
       </div>
 
       <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 mb-1.5">Notes</label>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Notes</label>
         <textarea
           value={formData.notes}
           onChange={({ target }) => handleChange("notes", target.value)}
           rows={3}
-          className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 px-3 text-gray-800 text-base focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 focus:bg-white"
+          className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl py-2.5 px-3.5 text-gray-800 dark:text-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 focus:bg-white dark:focus:bg-gray-700 transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500"
           placeholder="Optional notes"
         />
       </div>

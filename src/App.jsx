@@ -12,6 +12,13 @@ import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import Lend from "./pages/Lend.jsx";
 import Borrow from "./pages/Borrow.jsx";
+import Budgets from "./pages/Budgets.jsx";
+import Recurring from "./pages/Recurring.jsx";
+import Savings from "./pages/Savings.jsx";
+import Investments from "./pages/Investments.jsx";
+import Debts from "./pages/Debts.jsx";
+import Analytics from "./pages/Analytics.jsx";
+import Profile from "./pages/Profile.jsx";
 import ProtectedRoute from "./components/guards/ProtectedRoute.jsx";
 import ErrorBoundary from "./components/ui/ErrorBoundary.jsx";
 
@@ -35,6 +42,13 @@ const App = () => {
                     <Route path="/borrow" element={<ProtectedRoute><Borrow /></ProtectedRoute>} />
                     <Route path="/category" element={<ProtectedRoute><Category /></ProtectedRoute>} />
                     <Route path="/filter" element={<ProtectedRoute><Filter /></ProtectedRoute>} />
+                    <Route path="/budgets" element={<ProtectedRoute><Budgets /></ProtectedRoute>} />
+                    <Route path="/recurring" element={<ProtectedRoute><Recurring /></ProtectedRoute>} />
+                    <Route path="/savings" element={<ProtectedRoute><Savings /></ProtectedRoute>} />
+                    <Route path="/investments" element={<ProtectedRoute><Investments /></ProtectedRoute>} />
+                    <Route path="/debts" element={<ProtectedRoute><Debts /></ProtectedRoute>} />
+                    <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
+                    <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
                 </Routes>
             </BrowserRouter>
         </ErrorBoundary>

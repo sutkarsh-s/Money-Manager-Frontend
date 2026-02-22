@@ -14,8 +14,8 @@ const FinanceOverview = ({ totalBalance, totalIncome, totalExpense }) => {
   return (
     <div className="card">
       <div className="mb-6">
-        <h5 className="text-lg font-semibold text-gray-900">Financial Overview</h5>
-        <p className="text-sm text-gray-500 mt-0.5">Balance distribution</p>
+        <h5 className="text-lg font-semibold text-gray-900 dark:text-white">Financial Overview</h5>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Balance distribution</p>
       </div>
 
       <CustomPieChart

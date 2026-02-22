@@ -23,18 +23,18 @@ const Input = ({
   }, []);
 
   const inputBaseStyles =
-    "w-full bg-gray-50 border rounded-lg py-2.5 px-3 text-gray-800 text-base transition-colors duration-200";
+    "w-full bg-gray-50 dark:bg-gray-800 border rounded-xl py-2.5 px-3.5 text-gray-800 dark:text-gray-200 text-base transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-gray-500";
   const inputFocusStyles =
-    "focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 focus:bg-white";
+    "focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 focus:bg-white dark:focus:bg-gray-700";
   const inputErrorStyles = error
-    ? "border-red-300 focus:ring-red-500/20 focus:border-red-500"
-    : "border-gray-200";
+    ? "border-red-300 dark:border-red-700 focus:ring-red-500/20 focus:border-red-500"
+    : "border-gray-200 dark:border-gray-700";
 
   return (
     <div className="mb-4">
       <label
         htmlFor={inputId}
-        className="block text-sm font-medium text-gray-700 mb-1.5"
+        className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
       >
         {label}
         {required && <span className="text-red-500 ml-1" aria-hidden>*</span>}
@@ -76,13 +76,13 @@ const Input = ({
               <button
                 type="button"
                 onClick={toggleShowPassword}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
-                  <EyeOff size={18} className="text-gray-500" aria-hidden />
+                  <EyeOff size={18} aria-hidden />
                 ) : (
-                  <Eye size={18} className="text-gray-500" aria-hidden />
+                  <Eye size={18} aria-hidden />
                 )}
               </button>
             )}
@@ -93,7 +93,7 @@ const Input = ({
         <p
           id={`${inputId}-error`}
           role="alert"
-          className="mt-1 text-sm text-red-600"
+          className="mt-1.5 text-sm text-red-600 dark:text-red-400"
         >
           {error}
         </p>

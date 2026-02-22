@@ -5,26 +5,77 @@ export const API_ENDPOINTS = {
     LOGIN: "/login",
     REGISTER: "/register",
     GET_USER_INFO: "/profile",
+    UPDATE_PROFILE: "/profile",
+    CHANGE_PASSWORD: "/profile/password",
+    DELETE_ACCOUNT: "/profile",
+
     GET_ALL_CATEGORIES: "/categories",
     ADD_CATEGORY: "/categories",
     UPDATE_CATEGORY: (categoryId) => `/categories/${categoryId}`,
-    GET_ALL_INCOMES: "/incomes",
     CATEGORY_BY_TYPE: (type) => `/categories/${type}`,
+
+    GET_ALL_INCOMES: "/incomes",
     ADD_INCOME: "/incomes",
     DELETE_INCOME: (incomeId) => `/incomes/${incomeId}`,
-    INCOME_EXCEL_DOWNLOAD: "excel/download/income",
-    EMAIL_INCOME: "/email/income-excel",
+
     GET_ALL_EXPENSE: "/expenses",
     ADD_EXPENSE: "/expenses",
     DELETE_EXPENSE: (expenseId) => `/expenses/${expenseId}`,
-    EXPENSE_EXCEL_DOWNLOAD: "excel/download/expense",
-    EMAIL_EXPENSE: "/email/expense-excel",
+
     APPLY_FILTERS: "/filter",
     DASHBOARD_DATA: "/dashboard",
+
     ADD_LEND_BORROW: "/lend-borrow",
     GET_LEND_BORROW: "/lend-borrow",
     DELETE_LEND_BORROW: (id) => `/lend-borrow/${id}`,
     UPDATE_LEND_BORROW_STATUS: (id) => `/lend-borrow/${id}/status`,
+
     CONTACT_US: "/contact",
+
+    // Budgets
+    CREATE_BUDGET: "/budgets",
+    GET_BUDGET_SUMMARY: "/budgets/summary",
+    UPDATE_BUDGET: (id) => `/budgets/${id}`,
+    DELETE_BUDGET: (id) => `/budgets/${id}`,
+
+    // Recurring Transactions
+    GET_RECURRING: "/recurring-transactions",
+    CREATE_RECURRING: "/recurring-transactions",
+    UPDATE_RECURRING: (id) => `/recurring-transactions/${id}`,
+    TOGGLE_RECURRING: (id) => `/recurring-transactions/${id}/toggle`,
+    DELETE_RECURRING: (id) => `/recurring-transactions/${id}`,
+
+    // Savings Goals
+    GET_SAVINGS_GOALS: "/savings-goals",
+    CREATE_SAVINGS_GOAL: "/savings-goals",
+    UPDATE_SAVINGS_GOAL: (id) => `/savings-goals/${id}`,
+    CONTRIBUTE_SAVINGS: (id) => `/savings-goals/${id}/contribute`,
+    DELETE_SAVINGS_GOAL: (id) => `/savings-goals/${id}`,
+
+    // Investments
+    GET_INVESTMENTS: "/investments",
+    CREATE_INVESTMENT: "/investments",
+    UPDATE_INVESTMENT: (id) => `/investments/${id}`,
+    DELETE_INVESTMENT: (id) => `/investments/${id}`,
+
+    // Debts
+    GET_DEBTS: "/debts",
+    CREATE_DEBT: "/debts",
+    UPDATE_DEBT: (id) => `/debts/${id}`,
+    DEBT_PAYMENT: (id) => `/debts/${id}/payment`,
+    DELETE_DEBT: (id) => `/debts/${id}`,
+
+    // Analytics
+    NET_WORTH: "/analytics/net-worth",
+    MONTHLY_SUMMARY: "/analytics/monthly-summary",
+    CATEGORY_BREAKDOWN: "/analytics/category-breakdown",
+
+    // Reports
+    DOWNLOAD_REPORT: (type, format) => `/reports/download/${type}?format=${format}`,
+    INCOME_EXCEL_DOWNLOAD: "/reports/excel/download/income",
+    EXPENSE_EXCEL_DOWNLOAD: "/reports/excel/download/expense",
+    EMAIL_INCOME: "/email/income-excel",
+    EMAIL_EXPENSE: "/email/expense-excel",
+
     UPLOAD_IMAGE: `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`
 }

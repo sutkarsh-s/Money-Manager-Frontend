@@ -2,6 +2,7 @@ import { useState, useCallback, memo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import BrandLogo from "./BrandLogo.jsx";
+import ThemeToggle from "./ui/ThemeToggle.jsx";
 
 const NAV_LINKS = [
   { name: "Home", to: "/home" },
@@ -16,13 +17,13 @@ const Header = () => {
   const closeMenu = useCallback(() => setIsMenuOpen(false), []);
 
   const navLinkStyles =
-    "text-gray-600 hover:text-purple-600 transition-colors duration-200 font-medium";
+    "text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-200 font-medium";
   const ctaStyles =
     "inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/35 transition-all duration-200";
 
   return (
     <header
-      className="border-b border-gray-200/80 bg-white/95 backdrop-blur-md sticky top-0 z-40 shadow-sm shadow-gray-200/50"
+      className="border-b border-gray-200/80 dark:border-gray-700/60 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md sticky top-0 z-40 shadow-sm shadow-gray-200/50 dark:shadow-none transition-colors duration-300"
       role="banner"
     >
       <div className="container mx-auto px-4">
@@ -46,7 +47,7 @@ const Header = () => {
                 key={link.name}
                 to={link.to}
                 className={`${navLinkStyles} ${
-                  location.pathname === link.to ? "text-purple-600 font-semibold" : ""
+                  location.pathname === link.to ? "text-purple-600 dark:text-purple-400 font-semibold" : ""
                 }`}
               >
                 {link.name}
@@ -54,12 +55,14 @@ const Header = () => {
             ))}
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+
             <div className="hidden sm:flex items-center gap-4">
               <Link
                 to="/login"
                 className={`${navLinkStyles} ${
-                  location.pathname === "/login" ? "text-purple-600 font-semibold" : ""
+                  location.pathname === "/login" ? "text-purple-600 dark:text-purple-400 font-semibold" : ""
                 }`}
               >
                 Login
@@ -71,7 +74,7 @@ const Header = () => {
             <button
               type="button"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2.5 rounded-xl text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors"
+              className="lg:hidden p-2.5 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-900/30 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMenuOpen}
             >
@@ -83,7 +86,7 @@ const Header = () => {
 
       {isMenuOpen && (
         <div
-          className="lg:hidden absolute top-full left-0 right-0 bg-white/98 backdrop-blur-md border-t border-gray-200 shadow-xl animate-fade-in"
+          className="lg:hidden absolute top-full left-0 right-0 bg-white/98 dark:bg-gray-900/98 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 shadow-xl animate-fade-in"
           role="navigation"
           aria-label="Mobile navigation"
         >
@@ -95,18 +98,18 @@ const Header = () => {
                   to={link.to}
                   onClick={closeMenu}
                   className={`px-4 py-3 rounded-xl ${navLinkStyles} ${
-                    location.pathname === link.to ? "text-purple-600 font-semibold bg-purple-50" : ""
+                    location.pathname === link.to ? "text-purple-600 dark:text-purple-400 font-semibold bg-purple-50 dark:bg-purple-900/20" : ""
                   }`}
                 >
                   {link.name}
                 </Link>
               ))}
-              <div className="flex flex-col gap-2 pt-4 mt-2 border-t border-gray-100">
+              <div className="flex flex-col gap-2 pt-4 mt-2 border-t border-gray-100 dark:border-gray-700">
                 <Link
                   to="/login"
                   onClick={closeMenu}
                   className={`px-4 py-3 rounded-xl ${navLinkStyles} ${
-                    location.pathname === "/login" ? "text-purple-600 font-semibold bg-purple-50" : ""
+                    location.pathname === "/login" ? "text-purple-600 dark:text-purple-400 font-semibold bg-purple-50 dark:bg-purple-900/20" : ""
                   }`}
                 >
                   Login

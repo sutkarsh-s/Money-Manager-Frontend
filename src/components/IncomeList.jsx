@@ -30,8 +30,8 @@ const IncomeList = ({ transactions, onDelete, onDownload, onEmail }) => {
     <div className="card">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <h5 className="text-lg font-semibold text-gray-900">Income Sources</h5>
-          <p className="text-sm text-gray-500 mt-0.5">Manage your income records</p>
+          <h5 className="text-lg font-semibold text-gray-900 dark:text-white">Income Sources</h5>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Manage your income records</p>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <button

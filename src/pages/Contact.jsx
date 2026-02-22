@@ -11,10 +11,7 @@ import { validateEmail } from "../util/validation.js";
 
 const Contact = () => {
   const [form, setForm] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
+    name: "", email: "", subject: "", message: "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -24,18 +21,9 @@ const Contact = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!form.name.trim()) {
-      toast.error("Name is required");
-      return;
-    }
-    if (!validateEmail(form.email)) {
-      toast.error("Please enter a valid email");
-      return;
-    }
-    if (form.message.trim().length < 10) {
-      toast.error("Message must be at least 10 characters");
-      return;
-    }
+    if (!form.name.trim()) { toast.error("Name is required"); return; }
+    if (!validateEmail(form.email)) { toast.error("Please enter a valid email"); return; }
+    if (form.message.trim().length < 10) { toast.error("Message must be at least 10 characters"); return; }
 
     setLoading(true);
     try {
@@ -52,12 +40,14 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-800">
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors">
       <Header />
       <main className="container mx-auto px-4 py-14 md:py-20">
-        <div className="max-w-2xl mx-auto card">
-          <h1 className="text-3xl font-bold text-gray-900">Contact Us</h1>
-          <p className="text-gray-600 mt-2">Need help or have a suggestion? Send us a message and our team will get back shortly.</p>
+        <div className="max-w-2xl mx-auto card animate-fade-in">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Contact Us</h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">
+            Need help or have a suggestion? Send us a message and our team will get back shortly.
+          </p>
 
           <form className="mt-8" onSubmit={handleSubmit}>
             <Input label="Full Name" value={form.name} onChange={({ target }) => handleChange("name", target.value)} required />
@@ -65,12 +55,12 @@ const Contact = () => {
             <Input label="Subject" value={form.subject} onChange={({ target }) => handleChange("subject", target.value)} placeholder="Optional" />
 
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">Message</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Message</label>
               <textarea
                 value={form.message}
                 onChange={({ target }) => handleChange("message", target.value)}
                 rows={5}
-                className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 px-3 text-gray-800 text-base focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 focus:bg-white"
+                className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl py-2.5 px-3.5 text-gray-800 dark:text-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 focus:bg-white dark:focus:bg-gray-700 transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500"
                 placeholder="Tell us how we can help..."
               />
             </div>
