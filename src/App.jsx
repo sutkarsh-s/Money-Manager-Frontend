@@ -12,29 +12,32 @@ import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import Lend from "./pages/Lend.jsx";
 import Borrow from "./pages/Borrow.jsx";
+import ProtectedRoute from "./components/guards/ProtectedRoute.jsx";
+import ErrorBoundary from "./components/ui/ErrorBoundary.jsx";
 
 const App = () => {
     return (
-        <>
+        <ErrorBoundary>
             <Toaster />
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Root />} />
                     <Route path="/home" element={<LandingPage />} />
-                    <Route path="/dashboard" element={<Home />} />
-                    <Route path="/income" element={<Income />} />
-                    <Route path="/expense" element={<Expense />} />
-                    <Route path="/lend" element={<Lend />} />
-                    <Route path="/borrow" element={<Borrow />} />
-                    <Route path="/category" element={<Category />} />
-                    <Route path="/filter" element={<Filter />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
+
+                    <Route path="/dashboard" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+                    <Route path="/income" element={<ProtectedRoute><Income /></ProtectedRoute>} />
+                    <Route path="/expense" element={<ProtectedRoute><Expense /></ProtectedRoute>} />
+                    <Route path="/lend" element={<ProtectedRoute><Lend /></ProtectedRoute>} />
+                    <Route path="/borrow" element={<ProtectedRoute><Borrow /></ProtectedRoute>} />
+                    <Route path="/category" element={<ProtectedRoute><Category /></ProtectedRoute>} />
+                    <Route path="/filter" element={<ProtectedRoute><Filter /></ProtectedRoute>} />
                 </Routes>
             </BrowserRouter>
-        </>
+        </ErrorBoundary>
     )
 }
 
