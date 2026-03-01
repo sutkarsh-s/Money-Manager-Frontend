@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@source "../../shared/src/**/*.{js,jsx}";
+@source "../../shell-app/src/**/*.{js,jsx}";
+@source "../../mfe-auth/src/**/*.{js,jsx}";
+@source "../../mfe-transactions/src/**/*.{js,jsx}";
+@source "../../mfe-planning/src/**/*.{js,jsx}";
+@source "../../mfe-investments/src/**/*.{js,jsx}";
+@source "../../mfe-banking/src/**/*.{js,jsx}";
+@source "../../mfe-analytics/src/**/*.{js,jsx}";
+@source "../../mfe-profile/src/**/*.{js,jsx}";
+@source "../../mfe-lending/src/**/*.{js,jsx}";
+
+/* ============================================
+   Design Tokens — Light Mode
+   ============================================ */
+
+:root {
+  --color-primary: 124 58 237;
+  --color-primary-hover: 109 40 217;
+  --color-primary-dark: 91 33 182;
+  --color-primary-light: 233 213 255;
+
+  --gradient-primary: linear-gradient(135deg, #7c3aed 0%, #5b21b6 50%, #4c1d95 100%);
+  --gradient-mesh: radial-gradient(at 40% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%);
+  --gradient-card: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.98) 100%);
+
+  --shadow-glow: 0 0 40px -10px rgba(124, 58, 237, 0.2);
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --bg-primary: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-input: #f9fafb;
+  --bg-sidebar: rgba(255, 255, 255, 0.95);
+
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+
+  --border-primary: rgba(229, 231, 235, 0.8);
+  --border-card: rgba(255, 255, 255, 0.8);
+}
+
+/* ============================================
+   Design Tokens — Dark Mode
+   ============================================ */
+
+.dark {
+  --gradient-card: linear-gradient(135deg, rgba(30, 30, 40, 0.95) 0%, rgba(24, 24, 32, 0.98) 100%);
+  --gradient-mesh: radial-gradient(at 40% 20%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(99, 102, 241, 0.04) 0%, transparent 50%);
+
+  --bg-primary: #0f0f14;
+  --bg-card: #1a1a24;
+  --bg-input: #1e1e2a;
+  --bg-sidebar: rgba(22, 22, 30, 0.95);
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+
+  --border-primary: rgba(51, 51, 68, 0.8);
+  --border-card: rgba(51, 51, 68, 0.5);
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+*:focus-visible {
+  outline: 2px solid rgb(var(--color-primary));
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Card & Component Utility Classes
+   ============================================ */
+
+.input-box {
+  @apply w-full flex justify-between gap-3 text-sm bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-xl px-4 py-3 mb-4 mt-3 border border-gray-200/80 dark:border-gray-700 outline-none transition-all duration-200;
+  @apply focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 focus:bg-white dark:focus:bg-gray-700;
+}
+
+.btn-primary {
+  @apply w-full text-sm font-semibold text-white rounded-xl py-3 px-5;
+  background: var(--gradient-primary);
+  @apply shadow-lg shadow-purple-500/25 hover:shadow-purple-500/30;
+  @apply hover:brightness-110 active:scale-[0.98] transition-all duration-200;
+  @apply disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:brightness-100;
+}
+
+.btn-danger {
+  @apply w-full text-sm font-semibold text-white rounded-xl py-3 px-5;
+  @apply bg-gradient-to-r from-rose-500 to-red-600;
+  @apply shadow-lg shadow-rose-500/25 hover:shadow-rose-500/30;
+  @apply hover:brightness-110 active:scale-[0.98] transition-all duration-200;
+  @apply disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:brightness-100;
+}
+
+.card {
+  @apply p-6 rounded-2xl border transition-all duration-300;
+  @apply bg-white dark:bg-gray-800/80 border-gray-100 dark:border-gray-700/60;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 10px 40px -15px rgba(0,0,0,0.08);
+  @apply hover:shadow-xl hover:shadow-purple-500/5 dark:hover:shadow-purple-500/10;
+}
+
+.card-btn {
+  @apply flex items-center gap-2.5 text-sm font-medium whitespace-nowrap;
+  @apply text-gray-600 dark:text-gray-300 bg-gray-100/80 dark:bg-gray-700/80;
+  @apply hover:bg-purple-50 dark:hover:bg-purple-900/30 hover:text-purple-700 dark:hover:text-purple-400;
+  @apply px-4 py-2.5 rounded-xl border border-gray-200/50 dark:border-gray-600/50;
+  @apply transition-all duration-200 cursor-pointer;
+}
+
+.add-btn {
+  @apply flex items-center gap-2 text-sm font-semibold whitespace-nowrap;
+  @apply text-emerald-700 dark:text-emerald-400;
+  @apply bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/30 dark:to-teal-900/30;
+  @apply border border-emerald-200/80 dark:border-emerald-700/50 rounded-xl px-4 py-2.5;
+  @apply hover:from-emerald-100 hover:to-teal-100 dark:hover:from-emerald-900/50 dark:hover:to-teal-900/50;
+  @apply transition-all duration-200 cursor-pointer;
+  @apply shadow-sm hover:shadow-emerald-500/10;
+}
+
+.add-btn-fill {
+  background: var(--gradient-primary);
+  @apply text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/30;
+  @apply border-none;
+}
+
+.bg-mesh {
+  background: var(--gradient-mesh);
+}
+
+.glass {
+  @apply backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 border border-white/60 dark:border-gray-700/60;
+}
+
+.glass-dark {
+  @apply backdrop-blur-xl bg-gray-900/80 border border-white/10;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-slide-in {
+  animation: slide-in-left 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.stagger-children > * {
+  animation: fade-in-up 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4b5fd;
+  border-radius: 999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4c1d95;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a78bfa;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #6d28d9;
+}
+
+/* ============================================
+   Touch & Mobile Utilities
+   ============================================ */
+
+@media (hover: none) and (pointer: coarse) {
+  .group-hover\:opacity-100 {
+    opacity: 1 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    @apply p-4 rounded-xl;
+  }
+
+  .input-box {
+    @apply text-base py-3;
+  }
+}

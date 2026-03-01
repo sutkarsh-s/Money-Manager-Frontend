@@ -136,7 +136,7 @@ const Income = () => {
 
     const handleEmailIncomeDetails = async () => {
         try {
-            const response = await axiosConfig.get(API_ENDPOINTS.EMAIL_INCOME);
+            const response = await axiosConfig.post(API_ENDPOINTS.EMAIL_INCOME);
             if (response.status === 200) {
                 toast.success("Income details emailed successfully");
             }

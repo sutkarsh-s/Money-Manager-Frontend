@@ -1,0 +1,16 @@
+{
+  "name": "@mm/mfe-banking",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "dependencies": {
+    "@mm/shared": "*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.6.3"
+  }
+}

@@ -152,7 +152,7 @@ const Expense = () => {
 
     const handleEmailExpenseDetails = async () => {
         try {
-            const response = await axiosConfig.get(API_ENDPOINTS.EMAIL_EXPENSE);
+            const response = await axiosConfig.post(API_ENDPOINTS.EMAIL_EXPENSE);
             if(response.status === 200) {
                 toast.success("Email sent");
             }

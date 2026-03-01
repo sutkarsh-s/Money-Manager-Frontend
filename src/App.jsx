@@ -25,7 +25,18 @@ import ErrorBoundary from "./components/ui/ErrorBoundary.jsx";
 const App = () => {
     return (
         <ErrorBoundary>
-            <Toaster />
+            <Toaster
+                position="top-right"
+                toastOptions={{
+                    duration: 4000,
+                    success: { duration: 3000 },
+                    error: { duration: 5000 },
+                    style: {
+                        fontSize: '14px',
+                        maxWidth: '400px',
+                    },
+                }}
+            />
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Root />} />

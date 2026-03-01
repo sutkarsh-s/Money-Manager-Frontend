@@ -1,6 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
+@source "../../shared/src/**/*.{js,jsx}";
+@source "../../shell-app/src/**/*.{js,jsx}";
+@source "../../mfe-auth/src/**/*.{js,jsx}";
+@source "../../mfe-transactions/src/**/*.{js,jsx}";
+@source "../../mfe-planning/src/**/*.{js,jsx}";
+@source "../../mfe-investments/src/**/*.{js,jsx}";
+@source "../../mfe-banking/src/**/*.{js,jsx}";
+@source "../../mfe-analytics/src/**/*.{js,jsx}";
+@source "../../mfe-profile/src/**/*.{js,jsx}";
+@source "../../mfe-lending/src/**/*.{js,jsx}";
+
 /* ============================================
    Design Tokens — Light Mode
    ============================================ */
